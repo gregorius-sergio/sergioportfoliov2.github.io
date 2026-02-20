@@ -3,29 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gregorius Sergio | Portfolio</title>
+    <title>Gregorius Sergio | Terminal Portfolio</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS Kustom Super Ringan untuk utilitas tambahan */
-        body { background-color: #1A1A1C; color: #F2F2F7; overflow-x: hidden; }
+        /* Custom CSS Ringan */
+        body { 
+            background-color: #1A1A1C; 
+            color: #F2F2F7; 
+            overflow-x: hidden; 
+        }
         .cursor-crosshair { cursor: crosshair; }
-        /* Animasi masuk pelan saat di-scroll */
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #1A1A1C; border-left: 1px solid rgba(255, 200, 87, 0.2); }
+        ::-webkit-scrollbar-thumb { background: #FFC857; }
+        ::-webkit-scrollbar-thumb:hover { background: #E08EAD; }
+
+        /* Scroll Animations */
         .is-visible { opacity: 1 !important; transform: translateY(0) !important; }
-        .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .animate-on-scroll { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        /* Nav Overlay Transition */
+        #navOverlay {
+            transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-[#FFC857] selection:text-[#1A1A1C]">
 
+    <!-- ========================================== -->
+    <!-- HEADER -->
+    <!-- ========================================== -->
     <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-5 bg-[#1A1A1C] border-b border-[#FFC857]/20">
         <div class="logo text-[#FFC857] font-bold text-xl md:text-2xl tracking-tighter uppercase cursor-pointer hover:text-[#E08EAD] transition-colors duration-300">
             GREGORIUS SERGIO
         </div>
         <div class="flex items-center gap-8">
-            <div class="switch-container group cursor-pointer" onclick="toggleTheme()">
-                <div id="themeToggleBtn" class="w-10 h-5 border border-[#FFC857] relative flex items-center transition-all duration-300 group-hover:bg-[#FFC857]/10">
-                    <div class="w-3 h-3 bg-[#E08EAD] absolute left-1 transition-all duration-300"></div>
-                </div>
-            </div>
             <div class="hamburger flex flex-col gap-1.5 cursor-pointer group" onclick="toggleMenu()">
                 <span class="w-8 h-[2px] bg-[#FFC857] transition-all duration-300 group-hover:bg-[#E08EAD]"></span>
                 <span class="w-6 h-[2px] bg-[#FFC857] transition-all duration-300 group-hover:bg-[#E08EAD] group-hover:w-8"></span>
@@ -34,12 +53,15 @@
         </div>
     </header>
 
-    <div id="navOverlay" class="fixed inset-0 bg-[#1A1A1C] z-40 flex flex-col px-6 pt-28 pb-8 transform transition-transform duration-500 ease-in-out -translate-y-full">
-        <div class="flex justify-between items-end border-b border-[#FFC857]/20 pb-4 mb-8">
+    <!-- ========================================== -->
+    <!-- NAV OVERLAY (Triple Lock & Scroll Enabled) -->
+    <!-- ========================================== -->
+    <div id="navOverlay" class="fixed inset-0 bg-[#1A1A1C] z-40 flex flex-col px-6 pt-28 pb-8 transform -translate-y-full opacity-0 pointer-events-none overflow-y-auto">
+        <div class="flex justify-between items-end border-b border-[#FFC857]/20 pb-4 mb-8 shrink-0">
             <span class="text-[#E08EAD] text-xs md:text-sm uppercase tracking-widest font-mono">Access Terminal</span>
             <div class="text-[#FFC857]/40 text-xs tracking-widest uppercase">MENU</div>
         </div>
-        <div class="flex flex-col gap-2 md:gap-4 flex-grow justify-center">
+        <div class="flex flex-col gap-2 md:gap-4 flex-grow justify-center py-10">
             <a href="#home" onclick="toggleMenu()" class="text-5xl md:text-8xl font-bold text-[#FFC857] uppercase tracking-tighter hover:text-[#E08EAD] hover:translate-x-6 transition-all duration-300 origin-left">HOME</a>
             <a href="#about" onclick="toggleMenu()" class="text-5xl md:text-8xl font-bold text-[#FFC857] uppercase tracking-tighter hover:text-[#E08EAD] hover:translate-x-6 transition-all duration-300 origin-left">ABOUT</a>
             <a href="#education" onclick="toggleMenu()" class="text-5xl md:text-8xl font-bold text-[#FFC857] uppercase tracking-tighter hover:text-[#E08EAD] hover:translate-x-6 transition-all duration-300 origin-left">EDUCATION</a>
@@ -47,7 +69,7 @@
             <a href="#roadmap" onclick="toggleMenu()" class="text-5xl md:text-8xl font-bold text-[#FFC857] uppercase tracking-tighter hover:text-[#E08EAD] hover:translate-x-6 transition-all duration-300 origin-left">ROADMAP</a>
             <a href="#connect" onclick="toggleMenu()" class="text-5xl md:text-8xl font-bold text-[#FFC857] uppercase tracking-tighter hover:text-[#E08EAD] hover:translate-x-6 transition-all duration-300 origin-left">CONNECT</a>
         </div>
-        <div class="mt-auto pt-6 border-t border-[#FFC857]/20">
+        <div class="mt-auto pt-6 border-t border-[#FFC857]/20 shrink-0">
             <div class="grid grid-cols-2 gap-4 text-xs md:text-sm font-mono uppercase tracking-wider">
                 <div class="flex flex-col gap-1"><span class="text-[#FFC857]/40">Current Session</span><span class="text-[#E08EAD]">v2.8.0-YellowPure</span></div>
                 <div class="flex flex-col gap-1 text-right"><span class="text-[#FFC857]/40">Location</span><span class="text-[#E08EAD]">ID/Pontianak</span></div>
@@ -56,6 +78,9 @@
     </div>
 
     <main>
+        <!-- ========================================== -->
+        <!-- HERO SECTION -->
+        <!-- ========================================== -->
         <section id="home" class="min-h-screen pt-32 pb-16 px-6 md:px-12 flex flex-col justify-center relative overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto animate-on-scroll">
                 <div class="lg:col-span-7 flex flex-col gap-8 z-10">
@@ -82,12 +107,15 @@
                 <div class="lg:col-span-5 relative group mt-12 lg:mt-0">
                     <div class="absolute inset-0 border-2 border-[#FFC857] translate-x-4 translate-y-4 transition-transform duration-300 group-hover:translate-x-6 group-hover:translate-y-6"></div>
                     <div class="relative bg-[#1A1A1C] border-2 border-[#1A1A1C] overflow-hidden">
-                        <img src="https://github.com/egorion-7/web-image/blob/main/4ea9de48-19f3-46a6-aa7a-91728535d6cb.png?raw=true" alt="Profile" class="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105">
+                        <img src="https://github.com/egorion-7/web-image/blob/main/4ea9de48-19f3-46a6-aa7a-91728535d6cb.png?raw=true" onerror="this.src='https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=800';" alt="Profile" class="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ========================================== -->
+        <!-- ABOUT SECTION -->
+        <!-- ========================================== -->
         <section id="about" class="py-24 px-6 md:px-12 border-t border-[#FFC857]/10 relative">
             <div class="mb-12 md:mb-20 animate-on-scroll">
                 <h2 class="text-5xl md:text-[7rem] font-extrabold uppercase tracking-tighter text-[#FFC857]/10 leading-none pointer-events-none">About Me</h2>
@@ -96,10 +124,10 @@
                 <div class="lg:col-span-7 flex flex-col gap-8 animate-on-scroll">
                     <h3 class="text-2xl md:text-4xl font-bold text-[#E08EAD] uppercase tracking-tight">Who is Sergio?</h3>
                     <div class="space-y-6 text-[#F2F2F7]/80 text-base md:text-lg leading-relaxed">
-                        <p class="border-l-2 border-[#E08EAD] pl-6 py-1">Secara sederhana, saya adalah seseorang yang senang mengeksplorasi banyak hal. Saya tipe orang yang lebih suka belajar dengan cara mencoba langsung diimbangi dengan pembelajaran secara teori.</p>
-                        <p class="pl-6 lg:pl-8 text-sm md:text-base opacity-80">Untuk menjaga keseimbangan harian di luar ketertarikan saya pada dunia Crypto, saya terbiasa meluangkan waktu dengan aktif berolahraga, menjadikan musik sebagai elemen yang memberikan fokus dalam beraktivitas, serta menikmati waktu luang dengan bermain game sebagai sarana untuk menyegarkan pikiran.</p>
+                        <p class="border-l-4 border-[#E08EAD] pl-6 py-1">Secara sederhana, saya adalah seseorang yang senang mengeksplorasi banyak hal. Saya tipe orang yang lebih suka belajar dengan cara mencoba langsung diimbangi dengan pembelajaran secara teori.</p>
+                        <p class="pl-6 lg:pl-10 text-sm md:text-base opacity-80 leading-loose">Untuk menjaga keseimbangan harian di luar ketertarikan saya pada dunia Crypto, saya terbiasa meluangkan waktu dengan aktif berolahraga, menjadikan musik sebagai elemen yang memberikan fokus dalam beraktivitas, serta menikmati waktu luang dengan bermain game sebagai sarana untuk menyegarkan pikiran.</p>
                     </div>
-                    <div class="signature mt-4 pl-6 lg:pl-8 text-2xl text-[#FFC857] italic font-serif">Gregorius Sergio</div>
+                    <div class="signature mt-4 pl-6 lg:pl-10 text-2xl text-[#FFC857] italic font-serif">Gregorius Sergio</div>
                 </div>
                 <div class="lg:col-span-5 relative group animate-on-scroll" style="transition-delay: 100ms;">
                     <div class="border-2 border-[#FFC857] p-8 bg-[#1A1A1C] relative transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(224,142,173,1)]">
@@ -122,6 +150,9 @@
             </div>
         </section>
 
+        <!-- ========================================== -->
+        <!-- EDUCATION SECTION -->
+        <!-- ========================================== -->
         <section id="education" class="py-24 px-6 md:px-12 border-t border-[#FFC857]/10 relative overflow-hidden">
             <div class="mb-16 md:mb-24 flex items-center gap-4 border-b border-[#FFC857]/20 pb-4 max-w-7xl mx-auto animate-on-scroll">
                 <span class="text-[#E08EAD] font-mono text-xl md:text-2xl">>_</span>
@@ -162,6 +193,9 @@
             </div>
         </section>
 
+        <!-- ========================================== -->
+        <!-- PROJECTS SECTION -->
+        <!-- ========================================== -->
         <section id="projects" class="py-24 px-6 md:px-12 border-t border-[#FFC857]/10 relative">
             <div class="mb-16 max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#FFC857]/20 pb-6 animate-on-scroll">
                 <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-[#F2F2F7]">Projects <span class="text-[#FFC857]">Showcase</span></h2>
@@ -204,8 +238,8 @@
                         <p class="text-[#F2F2F7]/80 text-sm md:text-base leading-relaxed border-l-2 border-[#E08EAD]/50 pl-5 mb-8">Website ini dibuat sepenuhnya secara mandiri. Dibangun dengan metode Vibe Coding, di mana saya membangun website secara intensif dengan AI Partner untuk menerjemahkan bentuk visual artistik menjadi baris kode yang fungsional.</p>
                         <div class="flex flex-wrap gap-2">
                             <span class="border border-[#E08EAD]/40 text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase">HTML5</span>
-                            <span class="border border-[#E08EAD]/40 text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase line-through opacity-70" title="RIP Aurora">WebGL Aurora</span>
-                            <span class="border border-[#E08EAD]/40 text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase line-through opacity-70" title="RIP Glassmorphism">CSS Glass</span>
+                            <span class="border border-[#E08EAD]/40 text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase line-through opacity-70">WebGL Aurora</span>
+                            <span class="border border-[#E08EAD]/40 text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase line-through opacity-70">CSS Glass</span>
                             <span class="border border-[#E08EAD] text-[#E08EAD] px-3 py-1 text-xs font-mono uppercase font-bold">Tailwind CSS</span>
                         </div>
                     </div>
@@ -219,6 +253,9 @@
             </div>
         </section>
 
+        <!-- ========================================== -->
+        <!-- ROADMAP SECTION -->
+        <!-- ========================================== -->
         <section id="roadmap" class="py-24 px-6 md:px-12 border-t border-[#FFC857]/10 relative">
             <div class="mb-16 max-w-7xl mx-auto animate-on-scroll">
                 <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-[#F2F2F7] border-l-8 border-[#FFC857] pl-6">
@@ -270,6 +307,10 @@
                 </div>
             </div>
         </section>
+
+        <!-- ========================================== -->
+        <!-- CONNECT MORE SECTION -->
+        <!-- ========================================== -->
         <section id="connect" class="py-24 px-6 md:px-12 border-t border-[#FFC857]/10 relative">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 max-w-7xl mx-auto items-center animate-on-scroll">
                 <div class="lg:col-span-5 flex flex-col gap-6">
@@ -287,7 +328,6 @@
                 </div>
 
                 <div class="lg:col-span-7 flex flex-col w-full border-t-2 border-[#F2F2F7]/10 mt-8 lg:mt-0 animate-on-scroll" style="transition-delay: 100ms;">
-                    
                     <a href="https://www.linkedin.com/in/gregorius-sergio-37762b300" target="_blank" class="group flex items-center justify-between py-8 border-b-2 border-[#F2F2F7]/10 px-6 -mx-6 hover:bg-[#FFC857] transition-all duration-300">
                         <div class="flex items-center gap-6 md:gap-8">
                             <svg class="w-8 h-8 md:w-10 md:h-10 fill-current text-[#F2F2F7] group-hover:text-[#1A1A1C] transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -311,12 +351,14 @@
                         </div>
                         <span class="text-3xl text-[#1A1A1C] opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300 font-mono">↗</span>
                     </a>
-
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
     <footer id="footer" class="pt-20 pb-10 px-6 md:px-12 border-t-4 border-[#FFC857] animate-on-scroll">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-5 flex flex-col gap-6">
@@ -356,18 +398,18 @@
         </div>
     </footer>
 
+    <!-- ========================================== -->
+    <!-- MODAL GREMBIT V9.2 -->
+    <!-- ========================================== -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex justify-center items-center p-4 md:p-8 bg-[#1A1A1C]/95 opacity-0 invisible transition-all duration-300 backdrop-blur-sm">
         <div class="modal-content relative w-full max-w-4xl bg-[#1A1A1C] border-2 border-[#FFC857] shadow-[16px_16px_0px_0px_rgba(255,200,87,1)] max-h-[90vh] overflow-y-auto flex flex-col">
-            
             <span class="close-modal absolute top-0 right-0 w-12 h-12 flex justify-center items-center border-b-2 border-l-2 border-[#FFC857] bg-[#1A1A1C] text-[#FFC857] text-3xl cursor-pointer hover:bg-[#E08EAD] hover:text-[#1A1A1C] hover:border-[#E08EAD] transition-all duration-300 z-10" onclick="closeProjectModal()">&times;</span>
-
             <div class="modal-header p-8 md:p-12 border-b-2 border-[#FFC857]/20 relative overflow-hidden">
                 <span class="text-[#E08EAD] font-mono text-xl md:text-2xl mb-2 block">>_ SYSTEM_REPORT</span>
                 <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#F2F2F7]">Grembit V9.2</h3>
                 <p class="text-[#FFC857] font-mono tracking-widest uppercase mt-4 opacity-80">Full Project Report</p>
                 <div class="absolute right-0 top-0 text-[8rem] text-[#FFC857]/5 font-black pointer-events-none -mt-12 -mr-8">V9.2</div>
             </div>
-
             <div class="modal-body p-8 md:p-12 flex flex-col gap-12">
                 <div class="project-desc flex flex-col gap-6">
                     <div class="philosophy-text border-l-4 border-[#FFC857] pl-6">
@@ -380,7 +422,6 @@
                         Angka V9.2 di belakangnya adalah penanda bahwa sistem ini tidak dikembangkan begitu cepat.
                     </p>
                 </div>
-
                 <div class="stats-box border-2 border-[#E08EAD] p-6 md:p-8 bg-[#E08EAD]/5 relative group hover:bg-[#E08EAD]/10 transition-colors">
                     <h4 class="text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-[#E08EAD] mb-6 flex items-center gap-3">
                         <span class="w-3 h-3 bg-[#E08EAD] animate-pulse"></span> FULL BACKTEST REPORT (2024-2026)
@@ -400,47 +441,54 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- CLEAN JAVASCRIPT -->
+    <!-- ========================================== -->
     <script>
+        // Nav Overlay Toggle dengan Triple Lock (Position, Visibility, Interaction)
         function toggleMenu() {
             const nav = document.getElementById('navOverlay');
             nav.classList.toggle('-translate-y-full');
+            nav.classList.toggle('opacity-0');
+            nav.classList.toggle('pointer-events-none');
+            
+            // Lock body scroll
+            if (!nav.classList.contains('-translate-y-full')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
+        // Theme Lock Info
         function toggleTheme() {
-            console.log(">_ SYSTEM NOTIFICATION: Theme is strictly locked to 'Warm Obsidian' for optimal visual hierarchy.");
+            console.log(">_ SYSTEM NOTIFICATION: Theme is strictly locked to 'Warm Obsidian'.");
         }
 
+        // Project Modal Logic
         const projectModal = document.getElementById('project-modal');
-
         function openProjectModal() { 
             projectModal.classList.remove('opacity-0', 'invisible');
             projectModal.classList.add('opacity-100', 'visible');
             document.body.style.overflow = 'hidden'; 
         }
-        
         function closeProjectModal() { 
             projectModal.classList.add('opacity-0', 'invisible');
             projectModal.classList.remove('opacity-100', 'visible');
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = ''; 
         }
-        
-        window.onclick = function(event) { 
-            if (event.target == projectModal) {
-                closeProjectModal();
-            } 
-        }
+        window.onclick = function(event) { if (event.target == projectModal) closeProjectModal(); }
 
+        // Scroll Animation Observer (Lightweight)
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => { 
                 if (entry.isIntersecting) { 
                     entry.target.classList.add('is-visible'); 
-                    obs.unobserve(entry.target); 
+                    obs.unobserve(entry.target);
                 } 
             });
         }, { threshold: 0.1 });
-        
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
